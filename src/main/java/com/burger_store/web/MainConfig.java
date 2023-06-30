@@ -1,0 +1,6 @@
+package com.burger_store.web;
+
+
+public class MainConfig {
+
+}
