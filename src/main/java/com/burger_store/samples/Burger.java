@@ -5,8 +5,8 @@ import java.util.List;
 
 public class Burger {
     private Long id;
-    private Date dateCreated;
     private String name;
+    private Date dateCreated;
     private List<Ingredient> ingredients;
 
     public Burger() {
