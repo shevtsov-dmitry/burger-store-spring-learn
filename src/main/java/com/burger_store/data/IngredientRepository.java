@@ -1,7 +1,12 @@
 package com.burger_store.data;
 
+
+import java.util.List;
+
 import com.burger_store.samples.Ingredient;
 
+
 public interface IngredientRepository {
-    public Ingredient save();
+	public List<String> retrieveIngredientVariantsList();
+	Ingredient save(Ingredient ingredient);
 }

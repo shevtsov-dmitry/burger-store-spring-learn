@@ -1,12 +1,57 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <title>Burger ingredients</title>
+<meta charset="UTF-8">
+<title>Burger ingredients</title>
+<style>
+body {
+	font-family: Arial;
+	width: 100%;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	flex-direction: column;
+}
+
+img {
+	width: 250px;
+}
+
+.checkbox-label {
+	display: flex;
+}
+
+.checkbox-label label {
+	margin-left: 5px;
+	margin-top: 1px;
+}
+</style>
 </head>
 <body>
+	<img th:src="@{burger-ingredients.png}">
+	<h2>Choose ingredients</h2>
+	<!--  TODO add list of ingredients from database -->
+	<!-- <input type="checkbox" name="vehicle1" value="Bike">
+	<label for="vehicle1"> I have a bike</label>
+	<br>
+	<input type="checkbox" name="vehicle2" value="Car">
+	<label for="vehicle2"> I have a car</label>
+	<br>
+	<input type="checkbox" name="vehicle3" value="Boat">
+	<label for="vehicle3"> I have a boat</label>
+	<br> -->
+	<form  method="POST" th:object="${burger}">
+		<div class="ingredient-entity"
+			th:each="ingredient: ${ingredientVariants}">
+			<div class="checkbox-label">
+				<input type="checkbox" name="ingredient" value="${ingredient}">
+				<label for="ingredient">
+					<span th:text="${ingredient}">TEXT</span>
+				</label>
 
-
-
+			</div>
+		</div>
+		<button type="submit">submit</button>
+	</form>
 </body>
 </html>
