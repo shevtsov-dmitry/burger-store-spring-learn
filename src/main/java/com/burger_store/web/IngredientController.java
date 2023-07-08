@@ -53,15 +53,17 @@ public class IngredientController {
     public String process(@ModelAttribute("burger") Burger burger, 
     		Errors errors, HttpServletRequest request){ // TODO valid burger inputs
     	String[] selectedIngredients = request.getParameterValues("ingredient");
+    	log.info("BURGER INGREDINTS UNDER THIS TEXT");
     	log.info(Arrays.toString(selectedIngredients));
 		/*
-		 * if (selectedIngredients != null) { for (String ingredient : 
+		 * if (selectedIngredients != null) { for (String ingredient :
 		 * selectedIngredients) { burger.addIngredient(ingredient); } }
 		 */
-    	log.info("BURGER INGREDINTS UNDER THIS TEXT");
-    	log.info(burger.getIngredients().toString()); 
+//    	log.info(burger.getIngredients().toString());
     	// order.add(saved)
+
+
     	
-        return ""; 
+        return "redirect:";
     }
 }

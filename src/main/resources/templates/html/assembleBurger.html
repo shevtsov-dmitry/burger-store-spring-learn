@@ -44,7 +44,7 @@ img {
 		<div class="ingredient-entity"
 			th:each="ingredient: ${ingredientVariants}">
 			<div class="checkbox-label">
-				<input type="checkbox" name="ingredient" value="${ingredient}">
+				<input type="checkbox" name="ingredient" id="ingredient" th:value="${ingredient}">
 				<label for="ingredient">
 					<span th:text="${ingredient}">TEXT</span>
 				</label>
