@@ -1,9 +1,11 @@
 package com.burger_store.web;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
 
+import com.burger_store.samples.Order;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,10 +13,7 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.Errors;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 
 import com.burger_store.data.BurgerRepository;
 import com.burger_store.data.IngredientRepository;
@@ -22,8 +21,10 @@ import com.burger_store.data.JdbcIngredientRepository;
 import com.burger_store.samples.Burger;
 
 import jakarta.servlet.http.HttpServletRequest;
+import org.springframework.web.bind.support.SessionStatus;
 
 @Controller
+@SessionAttributes("order")
 @RequestMapping("/assembleBurger")
 public class IngredientController {
 		
@@ -48,22 +49,21 @@ public class IngredientController {
 	public Burger createBurger() {
 		return new Burger();
 	}
-	
+
+	@ModelAttribute(name ="order")
+	public Order createOrder(){
+		return new Order();
+	}
     @PostMapping
-    public String process(@ModelAttribute("burger") Burger burger, 
-    		Errors errors, HttpServletRequest request){ // TODO valid burger inputs
-    	String[] selectedIngredients = request.getParameterValues("ingredient");
-    	log.info("BURGER INGREDINTS UNDER THIS TEXT");
-    	log.info(Arrays.toString(selectedIngredients));
-		/*
-		 * if (selectedIngredients != null) { for (String ingredient :
-		 * selectedIngredients) { burger.addIngredient(ingredient); } }
-		 */
-//    	log.info(burger.getIngredients().toString());
-    	// order.add(saved)
-
-
-    	
-        return "redirect:";
-    }
+	public String process(Burger burger,
+						  Errors errors,
+						  @ModelAttribute Order order
+						  ){ // TODO valid burger inputs
+//		log.info(burger.getName());
+//		log.info(burger.getIngredients().toString());
+//		order = this.createOrder();
+		order.setOrderComponents(new ArrayList<>());
+		order.addBurger(burger);
+		return "redirect:/makeOrder";
+	}
 }

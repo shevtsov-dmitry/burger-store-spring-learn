@@ -1,12 +1,17 @@
 <!DOCTYPE html>
-<html lang="en">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <title>Make an order</title>
 </head>
-<
+
 <body>
-	
-	
+    <h1>Your Order</h1>
+    <hr>
+    <ul class="designed-burgers" th:each="burger: ${orderComponents}">
+        <p th:text="${burger.name}">NAME</p>
+        <li th:text="${burger.ingredients}">BURGER COMPONENTS</li>
+    </ul>
 </body>
 </html>
