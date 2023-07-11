@@ -75,8 +75,9 @@ public class Order {
         return orderComponents;
     }
 
-    public void setOrderComponents(List<Burger> orderComponents) {
+    public List<Burger> setOrderComponents(List<Burger> orderComponents) {
         this.orderComponents = orderComponents;
+        return orderComponents;
     }
 
     public void addBurger(Burger saved){
