@@ -1,57 +1,60 @@
 <!DOCTYPE html>
-<html lang="en">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
 <head>
-<meta charset="UTF-8">
-<title>Burger ingredients</title>
-<style>
-body {
-	font-family: Arial;
-	width: 100%;
-	display: flex;
-	justify-content: center;
-	align-items: center;
-	flex-direction: column;
-}
+    <meta charset="UTF-8">
+    <title>Burger ingredients</title>
+    <style>
+        body {
+            font-family: Arial;
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+        }
 
-img {
-	width: 250px;
-}
+        img {
+            width: 250px;
+        }
 
-.checkbox-label {
-	display: flex;
-}
+        .checkbox-label {
+            display: flex;
+        }
 
-.checkbox-label label {
-	margin-left: 5px;
-	margin-top: 1px;
-}
-</style>
+        .checkbox-label label {
+            margin-left: 5px;
+            margin-top: 1px;
+        }
+
+        button {
+            margin-top: 3px;
+            font-size: 1.3em;
+        }
+    </style>
 </head>
 <body>
-	<img th:src="@{burger-ingredients.png}">
-	<h2>Choose ingredients</h2>
-	<!--  TODO add list of ingredients from database -->
-	<!-- <input type="checkbox" name="vehicle1" value="Bike">
-	<label for="vehicle1"> I have a bike</label>
-	<br>
-	<input type="checkbox" name="vehicle2" value="Car">
-	<label for="vehicle2"> I have a car</label>
-	<br>
-	<input type="checkbox" name="vehicle3" value="Boat">
-	<label for="vehicle3"> I have a boat</label>
-	<br> -->
-	<form  method="POST" th:object="${burger}">
-		<div class="ingredient-entity"
-			th:each="ingredient: ${ingredientVariants}">
-			<div class="checkbox-label">
-				<input type="checkbox" name="ingredient" value="${ingredient}">
-				<label for="ingredient">
-					<span th:text="${ingredient}">TEXT</span>
-				</label>
+<img th:src="@{burger-ingredients.png}">
+<h2>Choose ingredients</h2>
+<form method="POST" th:object="${burger}">
+    <!--ingredients checkboxes-->
+    <div class="ingredient-entity"
+         th:each="ingredient: ${ingredientVariants}">
+        <div class="checkbox-label">
+            <input type="checkbox" name="ingredients" id="ingredient" th:value="${ingredient}">
+            <label for="ingredient">
+                <span th:text="${ingredient}">TEXT</span>
+            </label>
+        </div>
+    </div>
+    <!--		name of burger-->
+    <div class="add-name">
+        <label for="name">Burger name:</label>
+        <input type="text" name="name" id="name" th:field="*{name}" />
+    </div>
 
-			</div>
-		</div>
-		<button type="submit">submit</button>
-	</form>
+    <!--		submit btn-->
+    <button type="submit">submit</button>
+</form>
 </body>
 </html>

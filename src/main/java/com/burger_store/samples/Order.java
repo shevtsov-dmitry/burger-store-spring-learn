@@ -12,7 +12,7 @@ public class Order {
     private String creditCardNumber;
     private List<Burger> orderComponents;
 
-    public Order(Date placedAt, String city, String street, String apartment, String creditCardNumber, List<Burger> orderComponents) {
+    public Order(Date placedAt, String city, String street, String apartment, String creditCardNumber) {
         this.placedAt = placedAt;
         this.city = city;
         this.street = street;
@@ -75,9 +75,13 @@ public class Order {
         return orderComponents;
     }
 
-    public void setOrderComponents(List<Burger> orderComponents) {
+    public List<Burger> setOrderComponents(List<Burger> orderComponents) {
         this.orderComponents = orderComponents;
+        return orderComponents;
     }
 
+    public void addBurger(Burger saved){
+        this.orderComponents.add(saved);
+    }
 
 }

@@ -1,7 +1,10 @@
 package com.burger_store.data;
 
 import com.burger_store.samples.Burger;
+import org.springframework.jdbc.support.KeyHolder;
+
+import java.util.List;
 
 public interface BurgerRepository {
-    public Burger save(Burger design);
+     void save(List<Burger> orderComponents, KeyHolder keyHolder);
 }
