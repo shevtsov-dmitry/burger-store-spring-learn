@@ -1,17 +1,21 @@
 package com.burger_store.data;
 
-import java.sql.PreparedStatement;
-import java.util.List;
-
+import com.burger_store.samples.Burger;
+import com.burger_store.samples.Order;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.jdbc.core.PreparedStatementCreator;
+import org.springframework.jdbc.core.PreparedStatementCreatorFactory;
 import org.springframework.stereotype.Repository;
 
-import com.burger_store.samples.Ingredient;
+import java.sql.Types;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 
 @Repository
 public class JdbcIngredientRepository implements IngredientRepository{
-	
+
 	private JdbcTemplate jdbc;
 
 	@Autowired
@@ -32,11 +36,19 @@ public class JdbcIngredientRepository implements IngredientRepository{
 	}
 
 	@Override
-	public Ingredient save(Ingredient ingredient) {
-//		jdbc.update()
-		return null;
+	public void save(Order order) {
+		List<String> ingredients = new ArrayList<>();
+		for (Burger burger : order.getOrderComponents()) {
+			ingredients.addAll(burger.getIngredients());
+		}
+		PreparedStatementCreator psc = new PreparedStatementCreatorFactory(
+				"INSERT INTO ingredients(" +
+						"lettuce, bacon, tomato, onion, pickles, cheese, mayonnaise, ketchup)" +
+						" VALUES (?,?,?,?,?,?,?,?)", Types.BOOLEAN, Types.BOOLEAN, Types.BOOLEAN,
+				Types.BOOLEAN, Types.BOOLEAN ,Types.BOOLEAN , Types.BOOLEAN, Types.BOOLEAN)
+				.newPreparedStatementCreator(Arrays.asList(/* TODO */));
+		jdbc.update(psc);
 	}
-	
 
 	/*
 	 * PreparedStatementCreator psc = new PreparedStatementCreatorFactory(

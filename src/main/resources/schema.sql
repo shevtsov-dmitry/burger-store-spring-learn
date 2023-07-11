@@ -2,16 +2,15 @@
 
 CREATE TABLE IF NOT EXISTS burger
 (
-    id          SERIAL PRIMARY KEY NOT NULL,
-    order_id    INT,
-    name        varchar(10),
-    datecreated DATE
+    id             SERIAL PRIMARY KEY NOT NULL,
+    name           varchar(10),
+    datecreated    DATE,
+    ingredients_id INT
 );
 
 CREATE TABLE IF NOT EXISTS "order"
 (
     id        SERIAL PRIMARY KEY NOT NULL,
-    burger_id INT,
     placedAt  DATE,
     city      varchar(50),
     street    varchar(100),
@@ -20,7 +19,7 @@ CREATE TABLE IF NOT EXISTS "order"
 
 CREATE TABLE IF NOT EXISTS ingredients
 (
-    id         SERIAL PRIMARY KEY NOT NULL,
+    id         INT PRIMARY KEY NOT NULL,
     burger_id  INT,
     lettuce    boolean,
     bacon      boolean,
@@ -34,6 +33,7 @@ CREATE TABLE IF NOT EXISTS ingredients
 
 -- ADD FOREIGN KEYS
 
-ALTER TABLE "order" ADD FOREIGN KEY (burger_id) REFERENCES burger(id);
-ALTER TABLE burger ADD FOREIGN KEY (order_id) REFERENCES "order"(id);
-ALTER TABLE ingredients ADD FOREIGN KEY (burger_id) REFERENCES burger(id);
+ALTER TABLE
+    ALTER TABLE ingredients ADD FOREIGN KEY (burger_id) REFERENCES burger(id);
+ALTER TABLE burger
+    ADD FOREIGN KEY (ingredients_id) REFERENCES ingredients (id);

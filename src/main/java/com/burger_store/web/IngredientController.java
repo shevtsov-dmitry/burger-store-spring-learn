@@ -22,7 +22,7 @@ public class IngredientController {
 		
 	
     private static final Logger log = LoggerFactory.getLogger(IngredientController.class);
-    private BurgerRepository designRepository; 
+    private BurgerRepository burgerRepo;
     private final JdbcTemplate jdbc;
 	private final Order order = new Order();
 	private final List<Burger> burgersList = order.setOrderComponents(new ArrayList<>());
@@ -53,6 +53,7 @@ public class IngredientController {
 						  Errors errors,
 						  @ModelAttribute Order order
 						  ){ // TODO valid burger inputs
+
 		order.addBurger(burger);
 		return "redirect:/makeOrder";
 	}
