@@ -4,7 +4,7 @@ import java.util.Date;
 import java.util.List;
 
 public class Order {
-    private Long id;
+    private Integer id;
     private Date placedAt;
     private String city;
     private String street;
@@ -23,11 +23,11 @@ public class Order {
     public Order() {
     }
 
-    public Long getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 
