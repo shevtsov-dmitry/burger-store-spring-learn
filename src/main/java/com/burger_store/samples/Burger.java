@@ -4,7 +4,7 @@ import java.util.Date;
 import java.util.List;
 
 public class Burger {
-    private Long id;
+    private Integer id;
     private String name;
     private Date dateCreated;
     private List<String> ingredients;
@@ -18,11 +18,11 @@ public class Burger {
 		this.ingredients = ingredients;
 	}
 
-	public Long getId() {
+	public Integer getId() {
 		return id;
 	}
 
-	public void setId(Long id) {
+	public void setId(Integer id) {
 		this.id = id;
 	}
 

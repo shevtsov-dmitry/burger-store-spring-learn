@@ -1,7 +1,10 @@
 package com.burger_store.data;
 
+import java.util.List;
+import java.util.Map;
+
 import com.burger_store.samples.Order;
 
 public interface OrderRepository {
-    public Order save(Order order);
+	void save(Order order); 
 }

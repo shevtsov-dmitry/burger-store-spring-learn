@@ -18,16 +18,16 @@ import java.util.List;
 @Controller
 @SessionAttributes("order")
 @RequestMapping("/assembleBurger")
-public class IngredientController {
+public class BurgerController {
 		
 	
-    private static final Logger log = LoggerFactory.getLogger(IngredientController.class);
+    private static final Logger log = LoggerFactory.getLogger(BurgerController.class);
     private BurgerRepository burgerRepo;
     private final JdbcTemplate jdbc;
 	private final Order order = new Order();
 	private final List<Burger> burgersList = order.setOrderComponents(new ArrayList<>());
     
-	public IngredientController(JdbcTemplate jdbc) {
+	public BurgerController(JdbcTemplate jdbc) {
 		this.jdbc = jdbc;
 	}
 

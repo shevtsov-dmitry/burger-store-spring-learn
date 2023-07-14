@@ -11,6 +11,7 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.support.SessionStatus;
 
 @Controller
 @SessionAttributes("order")
@@ -37,11 +38,6 @@ public class OrderController {
 	@GetMapping
 	public String showForm(Model model) {
 		Order order = (Order) model.getAttribute("order");
-		// LOG
-//		for (Burger orderComponent : order.getOrderComponents()) {
-//			log.info(orderComponent.getIngredients().toString());
-//		}
-		// /LOG
 		model.addAttribute("orderComponents", order.getOrderComponents());
 
 		return "html/makeOrder";
@@ -49,16 +45,17 @@ public class OrderController {
 
 	@PostMapping
 	public String makeOrder(@ModelAttribute Order order,
-							@ModelAttribute Burger burger){
-
-		log.info(order.getCity());
-		log.info(order.getStreet());
-		log.info(order.getApartment());
-//		orderRepository.save(order);
-
-		return "redirect:/makeOrder";
+							@ModelAttribute Burger burger,
+							SessionStatus session){
+//		log.info(order.getCity());
+//		log.info(order.getStreet());
+//		log.info(order.getApartment());
+		orderRepository.save(order);
+		burgerRepo.save(order.getOrderComponents(), order.getId());
+		log.info(order.getId().toString());
+		session.setComplete();
+		return "redirect:/";
 	}
 
 
 }
-;
