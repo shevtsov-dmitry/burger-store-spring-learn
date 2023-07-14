@@ -9,6 +9,6 @@ import com.burger_store.samples.Order;
 
 public interface IngredientRepository {
 	public List<String> retrieveIngredientVariantsList();
-	void save(Order order);
+	void save();
 
 }

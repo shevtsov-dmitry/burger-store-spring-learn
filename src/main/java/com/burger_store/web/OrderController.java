@@ -51,7 +51,7 @@ public class OrderController {
 //		log.info(order.getStreet());
 //		log.info(order.getApartment());
 		orderRepository.save(order);
-		
+		burgerRepo.save(order.getOrderComponents(), order.getId());
 		log.info(order.getId().toString());
 		session.setComplete();
 		return "redirect:/";
