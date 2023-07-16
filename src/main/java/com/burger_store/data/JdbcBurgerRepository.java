@@ -1,7 +1,6 @@
 package com.burger_store.data;
 
 import com.burger_store.samples.Burger;
-import com.burger_store.samples.Order;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.PreparedStatementCreatorFactory;
 import org.springframework.jdbc.support.GeneratedKeyHolder;
@@ -15,12 +14,15 @@ import java.util.List;
 @Repository
 public class JdbcBurgerRepository implements BurgerRepository {
     private final JdbcTemplate jdbc;
+
     public JdbcBurgerRepository(JdbcTemplate jdbc) {
         this.jdbc = jdbc;
+
     }
 
     @Override
     public void save(Burger burger, Integer orderId) {
+
         var key = new GeneratedKeyHolder();
         burger.setDateCreated(new Date());
         Timestamp createdAt = new Timestamp(burger.getDateCreated().getTime());

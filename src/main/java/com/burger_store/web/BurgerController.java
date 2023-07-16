@@ -1,7 +1,6 @@
 package com.burger_store.web;
 
-import com.burger_store.data.BurgerRepository;
-import com.burger_store.data.JdbcIngredientRepository;
+import com.burger_store.data.IngredientRepository;
 import com.burger_store.samples.Burger;
 import com.burger_store.samples.Order;
 import org.slf4j.Logger;
@@ -20,20 +19,18 @@ import java.util.List;
 @RequestMapping("/assembleBurger")
 public class BurgerController {
     private static final Logger log = LoggerFactory.getLogger(BurgerController.class);
-    private BurgerRepository burgerRepo;
-    private final JdbcTemplate jdbc;
+	private IngredientRepository ingredientRepo;
 	private final Order order = new Order();
 	private final List<Burger> burgersList = order.setOrderComponents(new ArrayList<>());
     
-	public BurgerController(JdbcTemplate jdbc) {
-		this.jdbc = jdbc;
+	public BurgerController(IngredientRepository ingredientRepo) {
+		this.ingredientRepo = ingredientRepo;
 	}
 
 	@GetMapping
-    public String showForm(Model model){
-    	var repo = new JdbcIngredientRepository(jdbc);  
-    	List<String> ingredientVariants = repo.retrieveIngredientVariantsList();
-    	model.addAttribute("ingredientVariants",ingredientVariants);
+    public String showForm(Model model, Burger burger){
+		burger.setIngredients(ingredientRepo.retrieveIngredientVariantsList());
+    	model.addAttribute("ingredientVariants", burger.getIngredients());
     	return "html/assembleBurger";
     }
 
