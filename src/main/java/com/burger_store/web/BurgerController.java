@@ -19,8 +19,6 @@ import java.util.List;
 @SessionAttributes("order")
 @RequestMapping("/assembleBurger")
 public class BurgerController {
-		
-	
     private static final Logger log = LoggerFactory.getLogger(BurgerController.class);
     private BurgerRepository burgerRepo;
     private final JdbcTemplate jdbc;
