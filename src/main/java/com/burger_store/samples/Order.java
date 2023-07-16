@@ -1,14 +1,22 @@
 package com.burger_store.samples;
 
+import javax.validation.constraints.Digits;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Size;
 import java.util.Date;
 import java.util.List;
 
 public class Order {
     private Integer id;
     private Date placedAt;
+    @NotBlank(message = "city required")
     private String city;
+    @NotBlank(message = "street required")
     private String street;
+    @NotBlank(message = "apartment required")
     private String apartment;
+    @Digits(integer = 16, fraction = 0, message = "you need to enter only numbers")
+    @Size(min = 16, max = 16, message = "you need to enter exactly 16 numbers")
     private String creditCardNumber;
     private List<Burger> orderComponents;
 

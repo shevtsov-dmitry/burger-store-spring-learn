@@ -32,20 +32,23 @@
 <a th:href="assembleBurger"><h5><u>order one more</u></h5></a>
 <h2>Enter your address:</h2>
 <form action="makeOrder" method="post" th:object="${order}">
-<!--    <div class="order-entity" th:each="order: ${order}">-->
-        <div class="address">
-            <label for="city">city:</label>
-            <input type="text" id="city" placeholder="city" th:field="*{city}">
-        </div>
-        <div class="address">
-            <label for="street">street:</label>
-            <input type="text" id="street" placeholder="street" th:field="*{street}">
-        </div>
-        <div class="address">
-            <label for="apartment">apartment:</label>
-            <input type="text" id="apartment" placeholder="apartment" th:field="${order.apartment}">
-        </div>
-<!--    </div>-->
+    <!--    <div class="order-entity" th:each="order: ${order}">-->
+    <div class="address">
+        <label for="city">city:</label>
+        <input type="text" id="city" placeholder="city" th:field="*{city}">
+    </div>
+    <div class="address">
+        <label for="street">street:</label>
+        <input type="text" id="street" placeholder="street" th:field="*{street}">
+    </div>
+    <div class="address">
+        <label for="apartment">apartment:</label>
+        <input type="text" id="apartment" placeholder="apartment" th:field="${order.apartment}">
+    </div>
+    <div class="address">
+        <label for="credit card number">apartment:</label>
+        <input type="text" id="credit card number" placeholder="credit card number" th:field="*{creditCardNumber}">
+    </div>
     <button type="submit">Order</button>
 </form>
 </body>
