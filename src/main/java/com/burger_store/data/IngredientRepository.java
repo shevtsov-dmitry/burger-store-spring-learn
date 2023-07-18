@@ -3,12 +3,11 @@ package com.burger_store.data;
 
 import java.util.List;
 
-import com.burger_store.samples.Ingredient;
-import com.burger_store.samples.Order;
+import com.burger_store.samples.Burger;
 
 
 public interface IngredientRepository {
 	public List<String> retrieveIngredientVariantsList();
-	void save();
+	void save(Burger burger, Integer burgerId);
 
 }

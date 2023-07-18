@@ -19,6 +19,9 @@
         display: flex;
         flex-direction: row;
     }
+    .validation-error{
+        color: red;
+    }
 </style>
 <body>
 <h1>Your Order</h1>
@@ -32,20 +35,30 @@
 <a th:href="assembleBurger"><h5><u>order one more</u></h5></a>
 <h2>Enter your address:</h2>
 <form action="makeOrder" method="post" th:object="${order}">
-<!--    <div class="order-entity" th:each="order: ${order}">-->
-        <div class="address">
-            <label for="city">city:</label>
-            <input type="text" id="city" placeholder="city" th:field="*{city}">
-        </div>
-        <div class="address">
-            <label for="street">street:</label>
-            <input type="text" id="street" placeholder="street" th:field="*{street}">
-        </div>
-        <div class="address">
-            <label for="apartment">apartment:</label>
-            <input type="text" id="apartment" placeholder="apartment" th:field="${order.apartment}">
-        </div>
-<!--    </div>-->
+    <!--    <div class="order-entity" th:each="order: ${order}">-->
+    <div class="address">
+        <label for="city">city:</label>
+        <input type="text" id="city" placeholder="city" th:field="*{city}">
+        <span class="validation-error" th:if="${#fields.hasErrors('city')}" th:errors="*{city}">city Error</span>
+
+    </div>
+    <div class="address">
+        <label for="street">street:</label>
+        <input type="text" id="street" placeholder="street" th:field="*{street}">
+        <span class="validation-error" th:if="${#fields.hasErrors('street')}" th:errors="*{street}">Street Error</span>
+
+    </div>
+    <div class="address">
+        <label for="apartment">apartment:</label>
+        <input type="text" id="apartment" placeholder="apartment" th:field="${order.apartment}">
+        <span class="validation-error" th:if="${#fields.hasErrors('apartment')}" th:errors="*{apartment}">apartment Error</span>
+
+    </div>
+    <div class="address">
+        <label for="credit card number">credit card number:</label>
+        <input type="text" id="credit card number" placeholder="credit card number" th:field="*{creditCardNumber}">
+        <span class="validation-error" th:if="${#fields.hasErrors('creditCardNumber')}" th:errors="*{creditCardNumber}">CC Num Error</span>
+    </div>
     <button type="submit">Order</button>
 </form>
 </body>
