@@ -31,6 +31,10 @@
             margin-top: 3px;
             font-size: 1.3em;
         }
+
+        .validation-error {
+            color: red;
+        }
     </style>
 </head>
 <body>
@@ -46,13 +50,18 @@
                 <span th:text="${ingredient}">TEXT</span>
             </label>
         </div>
+        <span class="validation-error" th:if="${#fields.hasErrors('ingredients')}"
+              th:errors="*{ingredients}">ingredients Error</span>
+
     </div>
     <!--		name of burger-->
     <div class="add-name">
         <label for="name">Burger name:</label>
-        <input type="text" name="name" id="name" th:field="*{name}" />
-    </div>
+        <input type="text" name="name" id="name" th:field="*{name}"/>
+        <span class="validation-error" th:if="${#fields.hasErrors('name')}"
+              th:errors="*{name}">name Error</span>
 
+    </div>
     <!--		submit btn-->
     <button type="submit">submit</button>
 </form>

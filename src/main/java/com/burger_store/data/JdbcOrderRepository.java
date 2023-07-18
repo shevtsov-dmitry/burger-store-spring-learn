@@ -17,25 +17,27 @@ import com.burger_store.samples.Order;
 @Repository
 public class JdbcOrderRepository implements OrderRepository {
 
-	private final JdbcTemplate jdbc;
-	
-	public JdbcOrderRepository(JdbcTemplate jdbc) {
-		this.jdbc = jdbc;
-	}
-	
+    private final JdbcTemplate jdbc;
+
+    public JdbcOrderRepository(JdbcTemplate jdbc) {
+        this.jdbc = jdbc;
+    }
+
     @Override
-	public void save(Order order) {
-    	var key = new GeneratedKeyHolder();
-		order.setPlacedAt(new Date());
-		Timestamp placedAt = new Timestamp(order.getPlacedAt().getTime());
-		String sql = "INSERT INTO \"order\" (placedat, city, street, apartment) VALUES(?,?,?,?)";
-		var pscf = new PreparedStatementCreatorFactory(sql, Types.TIMESTAMP, Types.VARCHAR, Types.VARCHAR,
-				Types.VARCHAR);
-		pscf.setReturnGeneratedKeys(true);
-		var psc = pscf.newPreparedStatementCreator(
-				List.of(placedAt, order.getCity(), order.getStreet(), order.getApartment()));
-		jdbc.update(psc, key);
-		var keys = key.getKeyList();
-		order.setId((Integer) keys.get(keys.size() - 1).get("id"));
-	}
+    public void save(Order order) {
+        var key = new GeneratedKeyHolder();
+        order.setPlacedAt(new Date());
+        Timestamp placedAt = new Timestamp(order.getPlacedAt().getTime());
+        String sql = "INSERT INTO \"order\" (placedat, city, street, apartment, credit_card_number) VALUES(?,?,?,?,?)";
+        var pscf = new PreparedStatementCreatorFactory(sql, Types.TIMESTAMP,
+                Types.VARCHAR, Types.VARCHAR, Types.VARCHAR, Types.VARCHAR);
+        pscf.setReturnGeneratedKeys(true);
+        var psc = pscf.newPreparedStatementCreator(
+                List.of(placedAt, order.getCity(), order.getStreet(),
+                        order.getApartment(), order.getCreditCardNumber()));
+
+        jdbc.update(psc, key);
+        var keys = key.getKeyList();
+        order.setId((Integer) keys.get(keys.size() - 1).get("id"));
+    }
 }

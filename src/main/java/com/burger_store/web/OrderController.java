@@ -5,11 +5,14 @@ import com.burger_store.data.IngredientRepository;
 import com.burger_store.data.OrderRepository;
 import com.burger_store.samples.Burger;
 import com.burger_store.samples.Order;
+import jakarta.validation.Valid;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.Errors;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.bind.support.SessionStatus;
 
@@ -40,7 +43,10 @@ public class OrderController {
 	}
 
 	@PostMapping
-	public String makeOrder(@ModelAttribute("order") Order order, SessionStatus session){
+	public String makeOrder(@ModelAttribute("order") Order order,
+							Errors errors, SessionStatus session){
+		if(errors.hasErrors()) return "html/makeOrder";
+
 		orderRepository.save(order);
 		for (Burger burger: order.getOrderComponents()) {
 			burgerRepo.save(burger, order.getId());

@@ -1,13 +1,22 @@
 package com.burger_store.samples;
 
+
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Size;
+
 import java.util.Date;
 import java.util.List;
 
-public class Burger {
-    private Integer id;
-    private String name;
-    private Date dateCreated;
-    private List<String> ingredients;
+		public class Burger {
+			private Integer id;
+			@NotBlank(message = "you need to name your creature")
+			@Size(min=3, max=10, message = "name cannot be longer than 10 characters")
+			private String name;
+			private Date dateCreated;
+			@NotNull
+			@Size(min=1, message = "you must to choose at least one ingredient")
+			private List<String> ingredients;
 
     public Burger() {}
 
