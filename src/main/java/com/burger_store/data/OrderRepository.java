@@ -6,5 +6,5 @@ import java.util.Map;
 import com.burger_store.samples.Order;
 
 public interface OrderRepository {
-	void save(Order order); 
+	void save(Order order);
 }

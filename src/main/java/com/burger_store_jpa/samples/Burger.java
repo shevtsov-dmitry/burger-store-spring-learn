@@ -1,6 +1,8 @@
 package com.burger_store_jpa.samples;
 
 
+import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
@@ -8,7 +10,9 @@ import jakarta.validation.constraints.Size;
 import java.util.Date;
 import java.util.List;
 
+		@Entity
 		public class Burger {
+			@Id
 			private Integer id;
 			@NotBlank(message = "you need to name your creature")
 			@Size(min=3, max=10, message = "name cannot be longer than 10 characters")
@@ -16,7 +20,7 @@ import java.util.List;
 			private Date dateCreated;
 			@NotNull
 			@Size(min=1, message = "you must to choose at least one ingredient")
-			private List<String> ingredients;
+			private List<String> getIngredients;
 
     public Burger() {}
 
