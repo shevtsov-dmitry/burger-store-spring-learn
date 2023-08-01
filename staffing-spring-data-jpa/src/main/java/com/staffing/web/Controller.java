@@ -1,9 +1,9 @@
 package com.staffing.web;
 
-import com.example.jpa_test.data.jpa_repositories.DepartmentRepository;
-import com.example.jpa_test.data.jpa_repositories.EmployeeRepository;
-import com.example.jpa_test.data.jpa_repositories.ShiftRepository;
-import com.example.jpa_test.instance.Shift;
+import com.staffing.data.jpa_repos.DepartmentRepository;
+import com.staffing.data.jpa_repos.EmployeeRepository;
+import com.staffing.data.jpa_repos.ShiftRepository;
+import com.staffing.instance.Shift;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,10 +13,14 @@ import org.springframework.web.bind.annotation.*;
 import java.util.HashMap;
 import java.util.List;
 
+import
 @RestController
 @RequestMapping("/")
 
+
 public class Controller {
+    public Logger log = LoggerFactory.getLogger(this.getClass());
+
     private final ShiftRepository shiftRepo;
     private final DepartmentRepository departmentRepo;
     private final EmployeeRepository employeeRepo;
@@ -30,20 +34,21 @@ public class Controller {
         this.employeeRepo = employeeRepo;
     }
 
-    @GetMapping
-    public String form() {
-        Shift shift = shiftRepo.getShiftById(2);
-        String string = shift.getDepartment();
-        return string;
-    }
-
-    public Logger log = LoggerFactory.getLogger(this.getClass());
 
     @PostMapping("/save")
     public ResponseEntity<String> saveNewShift(@RequestBody List<HashMap<?,?>> jsonList) {
 
-            return ResponseEntity.ok("Success.");
+        return ResponseEntity.ok("Success.");
     }
+
+//    @GetMapping
+//    public String form() {
+//        Shift shift = shiftRepo.getShiftById(2);
+//        String string = shift.getDepartment();
+//        return string;
+//    }
+
+
     /*@Bean public CommandLineRunner runner(ShiftRepository shiftRepository) { return args -> {
             shiftRepository.save(new Shift("Milovi", new Date(), new Date()));
             shiftRepository.save(new Shift("raed", new Date(), new Date()));
