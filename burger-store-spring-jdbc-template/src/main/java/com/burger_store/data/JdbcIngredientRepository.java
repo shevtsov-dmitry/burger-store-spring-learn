@@ -14,7 +14,7 @@ import java.util.Arrays;
 import java.util.List;
 
 @Repository
-public class JdbcIngredientRepository implements IngredientRepository {
+public class JdbcIngredientRepository {
 
     private JdbcTemplate jdbc;
     private List<String> ingredientVariants = new ArrayList<>();
@@ -34,7 +34,6 @@ public class JdbcIngredientRepository implements IngredientRepository {
 
     @Override
     public void save(Burger burger, Integer burgerId) {
-
         List<String> ingredients = burger.getIngredients();
         List pscList = fillPscList(ingredients ,burgerId);
         PreparedStatementCreator psc = new PreparedStatementCreatorFactory(
