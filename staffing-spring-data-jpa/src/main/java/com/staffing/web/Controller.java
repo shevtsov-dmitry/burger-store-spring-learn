@@ -1,5 +1,6 @@
 package com.staffing.web;
 
+import com.staffing.data.configurations.MutualRepo;
 import com.staffing.data.jpa_repos.DepartmentRepository;
 import com.staffing.data.jpa_repos.EmployeeRepository;
 import com.staffing.data.jpa_repos.ShiftRepository;
@@ -10,10 +11,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
-import
 @RestController
 @RequestMapping("/")
 
@@ -37,7 +39,8 @@ public class Controller {
 
     @PostMapping("/save")
     public ResponseEntity<String> saveNewShift(@RequestBody List<HashMap<?,?>> jsonList) {
-
+        var repo = new MutualRepo();
+        log.info(repo.parseJsonIntoObjects(jsonList));
         return ResponseEntity.ok("Success.");
     }
 
