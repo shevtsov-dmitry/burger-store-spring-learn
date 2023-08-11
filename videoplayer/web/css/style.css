@@ -1,0 +1,11 @@
+body {
+  backdrop-filter: blur();
+  background-color: #9AB;
+}
+
+video {
+  border-radius: 1px;
+  border-color: white;
+}
+
+/*# sourceMappingURL=style.css.map */

@@ -31,3 +31,6 @@ build/
 
 ### VS Code ###
 .vscode/
+
+### IGNORE VIDEO ###
+/src/main/resources/static/chainsaw man S1E1.mkv
