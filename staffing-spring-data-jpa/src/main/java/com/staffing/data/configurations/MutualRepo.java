@@ -71,7 +71,6 @@ public class MutualRepo {
                                 case "Department" -> {
                                     if(key.equals("address")) department.setAddress(value);
                                     if(key.equals("description")) department.setDescription(value);
-
                                 }
                                 case "Employee" -> {
                                     if(key.equals("name")) employee.setName(value);
@@ -89,8 +88,6 @@ public class MutualRepo {
                             shift.setEmployeeId(employee.getId());
                             shiftRepo.save(shift);
                         }
-
-
                     }
 //                    myString += "\t" + String.format("project classes: %s , classes from map: %s", classNameInstances, objectIncomingInstances);
                 }
@@ -99,5 +96,4 @@ public class MutualRepo {
         }
         return myString;
     }
-
 }
